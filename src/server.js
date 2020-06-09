@@ -1,4 +1,4 @@
-require("./db/mongoose");
+//require("./db/mongoose");
 const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");

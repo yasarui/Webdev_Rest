@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ./src/config/dev.env src/server.js",
+    "start": "node src/server.js",
     "dev": "env-cmd -f ./src/config/dev.env nodemon src/server.js",
     "debug": "env-cmd -f ./src/config/dev.env node inspect-brk src/server.js"
   },
