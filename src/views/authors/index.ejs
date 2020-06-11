@@ -1,0 +1,18 @@
+<br/>
+<div class="card">
+   <div class="card-body">
+        <form method="GET" action="/authors" autocomplete="off">
+            <div class="form-group">
+                <label> Search Author </label>
+                <input class="form-control" type="text" name="name" value="<%= searchOptions.name %>" />
+            </div>
+            <button class="btn btn-primary" > Submit </button>
+        </form>
+   </div>
+</div>
+<br/>
+<ul class="list-group" >
+    <% authors.forEach(function(author,index){ %>
+        <li class="list-group-item"> <%= author.name  %> </li>
+    <% }) %>
+</ul>

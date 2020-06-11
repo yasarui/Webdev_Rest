@@ -3,3 +3,20 @@ http://localhost:3000/api/testing
 
 ### GET
 http://localhost:3000/
+
+### POST
+POST http://localhost:3000/authors/
+Content-Type: application/json
+
+{
+    "name":"Sara Kutti"
+}
+
+###
+GET http://localhost:3000/books
+
+###
+GET http://localhost:3000/books/new
+
+###
+POST http://localhost:3000/books

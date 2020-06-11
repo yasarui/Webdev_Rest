@@ -1,0 +1,38 @@
+<br/>
+<div class="card">
+   <div class="card-body">
+        <form method="GET" action="/books" autocomplete="off">
+            <div class="row">
+                <div class="col">
+                    <label> Title </label>
+                    <input placeholder="Search Tiltle" class="form-control" type="text" name="name" value="<%= searchOptions.name %>" />
+                </div>
+                <div class="col">
+                    <label> Published After </label>
+                    <input class="form-control" type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>" />
+                </div>
+                <div class="col">
+                    <label> Published Before </label>
+                    <input class="form-control" type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>" />
+                </div>
+            </div>
+            <br/>
+            <button class="btn btn-primary" > Submit </button>
+        </form>
+   </div>
+</div>
+<br/>
+<div class="row">
+    <% books.forEach((book,index) =>{ %>
+        <div class="col-sm-3">
+            <div class="card" style="width: 18rem;margin-bottom: 20px;margin-top: 20px">
+                <img height="381" src="<%= book.coverImagePath %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"> <%= book.name %> </h5>
+                    <p class="card-text"> <%=book.description %> </p>
+                    <a href="#" class="btn btn-primary"> View </a>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>

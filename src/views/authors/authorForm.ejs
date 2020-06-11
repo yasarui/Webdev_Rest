@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-body">
+            <form action="/authors" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label> Create Author  </label>
+                    <%- include('./_form_field.ejs') %>
+                </div>
+                <a class="btn btn-danger" href="/authors"> Cancel </a>
+                <button type="submit" class="btn btn-primary" > Create </button>
+            </form>
+    </div>
+</div>

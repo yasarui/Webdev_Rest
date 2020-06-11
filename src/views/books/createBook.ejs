@@ -1,0 +1,48 @@
+<div class="row justify-content-md-center">
+    <div class="col col-lg-8">
+        <br />
+        <form method="POST" action="/books" autocomplete="off" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label> Title : </label>
+                        <input class="form-control" type="text" name="name" value="<%= book.name %>" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label> Author : </label>
+                        <select class="form-control" name="author">
+                            <% authors.forEach(function(author){ %>
+                                <% if(author._id == book.author) { %>
+                                    <option value="<%= author._id %>" selected> <%= author.name %> </option>
+                                <% } else { %>
+                                    <option value="<%= author._id %>"> <%= author.name %> </option>               
+                                <% } %>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label> Publish Date </label>
+                <input class="form-control" type="date" name="publishDate"
+                    value="<%= book.publishDate ? new Date(book.publishDate).toISOString().split('T')[0] : '' %>" />
+            </div>
+            <div class="form-group">
+                <label> Page Count </label>
+                <input class="form-control" value="<%= book.pageCount %>" type="number" min="1" name="pageCount" />
+            </div>
+            <div class="form-group">
+                <label> Cover </label>
+                <input class="form-control" type="file" name="cover">
+            </div>
+            <div class="form-group">
+                <label> Description </label>
+                <textarea class="form-control" name="description"><%= book.description %></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit"> Create </button>
+            <a class="btn btn-danger" href="/books"> Cancel </a>
+        </form>
+    </div>
+</div>
