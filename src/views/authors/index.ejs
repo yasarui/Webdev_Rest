@@ -13,6 +13,12 @@
 <br/>
 <ul class="list-group" >
     <% authors.forEach(function(author,index){ %>
-        <li class="list-group-item"> <%= author.name  %> </li>
+        <li class="list-group-item"> <%= author.name  %> 
+           <span style="float: right" >
+                <a href="/authors/<%= author.id %>" class="btn btn-primary" > View </a>
+                <a href="/authors/<%= author.id %>/edit" class="btn btn-info"> Edit </a>
+                <%- include('../partials/_deleteForm.ejs',{"url":`/authors/${author.id}`}) %>
+           </span>
+        </li>
     <% }) %>
 </ul>

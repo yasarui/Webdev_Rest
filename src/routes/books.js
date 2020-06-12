@@ -6,20 +6,20 @@ const multer = require("multer");
 const Book = require('../models/book');
 const Author = require('../models/author');
 
-const bookCoversPath = path.join(__dirname,"../public",Book.basePath);
+//const bookCoversPath = path.join(__dirname,"../public",Book.basePath);
 
 //Init upload
-const upload = multer({
-    dest: bookCoversPath,
-    fileFilter(req,file,cb){
-        const fileName = file.originalname.toLocaleLowerCase();
-        if(!fileName.match(/\.(png|jpg|jepg)$/)){
-            return cb(new Error("only images are allowed"))
-        }else{
-             cb(null,true)
-        }        
-    }
-}).single('cover')
+// const upload = multer({
+//     dest: bookCoversPath,
+//     fileFilter(req,file,cb){
+//         const fileName = file.originalname.toLocaleLowerCase();
+//         if(!fileName.match(/\.(png|jpg|jepg)$/)){
+//             return cb(new Error("only images are allowed"))
+//         }else{
+//              cb(null,true)
+//         }        
+//     }
+// }).single('cover')
 
 router.get("/", async (req, res) => {
     let query = Book.find()
@@ -47,16 +47,20 @@ router.get("/new", (req,res)=>{
     renderFormPage(res,new Book())
 });
 
-router.post("/",upload,async (req,res)=>{
-    const fileName = req.file != null ? req.file.filename : '';
-    const book = new Book({...req.body,coverImageName:fileName});
+router.post("/",async (req,res)=>{
+    const book = {
+        name: req.body.name,
+        description: req.body.description,
+        pageCount: req.body.pageCount,
+        author: req.body.author,
+        publishDate: req.body.publishDate
+    }
+    saveCoverImage(book,req.body.cover);
     try{
-      await book.save();
+      const newBook = new Book(book);
+      await newBook.save();
       res.redirect("/books");
     }catch(e){
-       if(book.coverImageName != null){
-           removeBookCover(book.coverImageName)
-       }
        renderFormPage(res,req.body,e.message)
     }
 },(error,req,res,next) =>{
@@ -67,6 +71,16 @@ function removeBookCover(filename){
    fs.unlink(path.join(bookCoversPath,filename),(err)=>{
        if(err) console.log(err);
    })
+}
+
+function saveCoverImage(book,coverEncoded){
+    if(!coverEncoded) return;
+    const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'];
+    const cover = JSON.parse(coverEncoded);
+    if(cover != null && imageMimeTypes.includes(cover.type)){
+        book.coverImage = new Buffer.from(cover.data, 'base64');
+        book.coverImageType = cover.type
+    }
 }
 
 async function renderFormPage(res,book,error = false){

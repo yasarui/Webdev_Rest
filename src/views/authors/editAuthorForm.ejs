@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-body">
+        <form action="/authors/<%= author.id %>?_method=PUT" method="post" autocomplete="off">
+            <div class="form-group">
+                <label> Update Author  </label>
+                <%- include('./_form_field.ejs') %>
+            </div>
+            <a class="btn btn-danger" href="/authors/<%= author.id %>"> Cancel </a>
+            <button type="submit" class="btn btn-primary" > Update </button>
+        </form>
+    </div>
+</div>

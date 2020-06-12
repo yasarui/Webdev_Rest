@@ -1,0 +1,20 @@
+ <h2> <%= author.name %> </h2>
+ <a class="btn btn-primary" href="/authors/<%=author.id%>/edit"> Edit </a>
+ <%- include('../partials/_deleteForm.ejs',{url:`/authors/${author.id}`}) %>
+ <% if(booksByAuthor.length) { %>
+    <h3> Books By Author </h3>
+    <div class="row">
+        <% booksByAuthor.forEach((book,index) =>{ %>
+            <div class="col-sm-3">
+                <div class="card" style="width: 18rem;margin-bottom: 20px;margin-top: 20px">
+                    <img height="381" src="<%= book.coverImagePath %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> <%= book.name %> </h5>
+                        <p class="card-text"> <%=book.description %> </p>
+                        <a href="#" class="btn btn-primary"> View </a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+ <% } %>

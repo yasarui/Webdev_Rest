@@ -1,6 +1,7 @@
 require("./db/mongoose");
 const path = require("path");
 const express = require("express");
+const methodOverride = require("method-override");
 const expressLayouts = require("express-ejs-layouts");
 const indexRoutes = require('./routes');
 const authorRoutes = require('./routes/authors');
@@ -18,6 +19,7 @@ app.set('layout',"./layouts/layout");
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(expressLayouts);
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,"./public")));
 console.log("Public for is",path.join(__dirname,"./public"))
 

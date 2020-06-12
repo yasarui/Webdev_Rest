@@ -26,22 +26,32 @@ const bookSchema = mongoose.Schema({
         type: Number,
         default: Date.now
      },
-     coverImageName:{
+     coverImage:{
+         type: Buffer,
+         required: true
+    },
+    coverImageType:{
          type: String,
          required: true
     },
-     author: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Author',
         required: true
-     }
+    }
 });
 
+// bookSchema.virtual('coverImagePath').get(function(){
+//     if(this.coverImageName){
+//         return path.join("/",bookCoverImagesBasePath,this.coverImageName);
+//     }
+// })
+
 bookSchema.virtual('coverImagePath').get(function(){
-    if(this.coverImageName){
-        return path.join("/",bookCoverImagesBasePath,this.coverImageName);
+    if(this.coverImage != null && this.coverImageType != null){
+        return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
     }
 })
 
 module.exports = mongoose.model("Book",bookSchema);
-module.exports.basePath = bookCoverImagesBasePath;
+//module.exports.basePath = bookCoverImagesBasePath;
