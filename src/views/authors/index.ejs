@@ -15,8 +15,12 @@
     <% authors.forEach(function(author,index){ %>
         <li class="list-group-item"> <%= author.name  %> 
            <span style="float: right" >
-                <a href="/authors/<%= author.id %>" class="btn btn-primary" > View </a>
-                <a href="/authors/<%= author.id %>/edit" class="btn btn-info"> Edit </a>
+                <a href="/authors/<%= author.id %>" class="btn btn-primary" > 
+                    <i class="fas fa-eye"></i> View 
+                </a>
+                <a href="/authors/<%= author.id %>/edit" class="btn btn-info"> 
+                    <i class="far fa-edit"></i> Edit 
+                </a>
                 <%- include('../partials/_deleteForm.ejs',{"url":`/authors/${author.id}`}) %>
            </span>
         </li>

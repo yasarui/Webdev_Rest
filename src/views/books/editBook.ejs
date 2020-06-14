@@ -1,7 +1,7 @@
 <div class="row justify-content-md-center">
     <div class="col col-lg-8">
         <br />
-        <form method="POST" action="/books" autocomplete="off">
+        <form method="POST" action="/books/<%=book.id%>?_method=PUT" autocomplete="off">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -41,7 +41,7 @@
                 <label> Description </label>
                 <textarea class="form-control" name="description"><%= book.description %></textarea>
             </div>
-            <button class="btn btn-primary" type="submit"> Create </button>
+            <button class="btn btn-primary" type="submit"> Update </button>
             <a class="btn btn-danger" href="/books"> Cancel </a>
         </form>
     </div>

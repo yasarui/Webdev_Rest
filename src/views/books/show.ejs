@@ -1,0 +1,26 @@
+<div style="margin-top:20px" class="row justify-content-md-center">
+    <div class="col-8">
+        <h4> <%= book.name %> </h4>
+        <br/>
+        <div class="row">
+            <div class="col-5">
+                <div class="card">
+                   <div class="card-body">
+                        <img height="381" src="<%= book.coverImagePath %>" class="card-img-top" alt="...">
+                   </div>
+                   <div class="card-body">
+                        <a href="/books/<%= book.id %>/edit" class="btn btn-primary">  <i class="fas fa-eye"></i> Edit </a> 
+                        <%- include('../partials/_deleteForm.ejs',{url: `/books/${book.id}`}) %> 
+                        <a href="/authors/<%= book.author.id %>" class="btn btn-info"> View Author </a> 
+                   </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <p> Author : <%= book.author.name %> </p>
+                <p> Publish Date : <%= book.publishDate.toDateString() %> </p>
+                <p> Page Count : <%= book.pageCount %> </p>
+                <p> Description : <%= book.description %> </p>
+            </div>
+        </div>
+    </div>
+</div>

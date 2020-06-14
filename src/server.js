@@ -16,8 +16,8 @@ app.set('views',path.join(__dirname,"./views"));
 app.set('layout',"./layouts/layout");
 
 //Middlewares
-app.use(express.urlencoded());
-app.use(express.json());
+app.use(express.urlencoded({limit:'50mb'}));
+app.use(express.json({limit: '50mb'}));
 app.use(expressLayouts);
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,"./public")));

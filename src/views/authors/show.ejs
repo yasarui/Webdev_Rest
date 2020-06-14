@@ -1,8 +1,13 @@
- <h2> <%= author.name %> </h2>
- <a class="btn btn-primary" href="/authors/<%=author.id%>/edit"> Edit </a>
+<br/>
+<h2> <%= author.name %> </h2>
+<br/>
+ <a class="btn btn-primary" href="/authors/<%=author.id%>/edit"> 
+    <i class="far fa-edit"></i> Edit 
+ </a> &nbsp;
  <%- include('../partials/_deleteForm.ejs',{url:`/authors/${author.id}`}) %>
  <% if(booksByAuthor.length) { %>
-    <h3> Books By Author </h3>
+    <br/><br/>
+    <div class="p-3 mb-2 bg-info text-white"> Books by Author </div>
     <div class="row">
         <% booksByAuthor.forEach((book,index) =>{ %>
             <div class="col-sm-3">
@@ -11,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title"> <%= book.name %> </h5>
                         <p class="card-text"> <%=book.description %> </p>
-                        <a href="#" class="btn btn-primary"> View </a>
+                        <a href="/books/<%= book.id %>" class="btn btn-primary"> <i class="fas fa-eye"></i> View </a>
                     </div>
                 </div>
             </div>
